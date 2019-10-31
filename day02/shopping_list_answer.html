@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Shopping list</title>
+</head>
+<body>
+  <h1>My Shopping List</h1>
+
+  <div>
+    Enter a new item :
+    <input type="text">
+    <button>Add item</button>
+  </div>
+
+  <ul>
+  </ul>
+
+  <script>
+    const input = document.querySelector('input')  // input박스
+    const button = document.querySelector('button')  // 버튼
+    const list = document.querySelector('ul')  // ul 태그
+
+    button.addEventListener('click', function(event) {
+      // input의 value값을 가져온다
+      const text = input.value
+      // input의 value값을 초기화한다.
+      input.value = ''
+      // ul 밑에 li 태그를 달아야 목록이 생기기 때문에 li tag를 생성해줘야한다.
+      const item = document.createElement('li')
+      // li태그의 텍스트에 input의 value값을 할당한다  <li>df</li>
+      item.innerText = text
+
+      // 'Delete'버튼 생성
+      const deleteButton = document.createElement('button')
+      // 삭제하기 버튼에 이름을 지어준다
+      deleteButton.innerText = 'Delete'
+      // 아이템에 버튼을 넣어준다
+      item.appendChild(deleteButton)
+
+      // 아무것도 입력하지 않으면 등록X  ->  text === '' ,!text  동일
+      if (text === '') {
+        console.log('아무것도 없어!')
+      }
+      else {
+        // list(ul태그)에 item을 추가한다
+        list.appendChild(item)
+      }
+      // item 삭제
+      // 아이템을 추가하는 시점에 '삭제하기'버튼을 만든다
+      // 해당 아이템이 만들어 질 때, 삭제하기 버튼을 만들었기 때문에 
+      // 해당 아이템의 삭제하기 버튼을 누르면 그 아이템이 삭제된다.
+
+      // delete 버튼을 눌렀을 때, 삭제가 일어나도록 eventlistever를 걸어준다
+      deleteButton.addEventListener('click', () => {
+        item.remove()
+      })
+
+
+    })
+
+    
+
+  </script>
+</body>
+</html>
