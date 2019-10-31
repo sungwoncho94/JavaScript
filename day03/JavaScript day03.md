@@ -165,7 +165,7 @@ XHR.send()
 
   (1) html 파일 만든 후, `<script src="https://unpkg.com/axios/dist/axios.min.js"></script>` 를 head / meta 아래에 넣기
 
-  (2)
+  (2) 
 
   ```html
   <!DOCTYPE html>
@@ -199,4 +199,94 @@ XHR.send()
   </html>
   ```
 
-  
+
+
+- Dogs and Cats.html
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Dogs and Cats</title>
+  <style>
+    img {
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <h1>댕댕이</h1>
+  <button id='get_dog_btn'>댕댕이 사진 내놔</button>
+  <button id='get_cat_btn'>고양이 사진 내놔</button>
+  <div class="animals"></div>
+
+  <script>
+    // 댕댕이 내놔버튼을 누르면 댕댕이 사진을 불러올 수 있도록 설정
+    // button.addEventListener('click', getDogImage) -> 괄호없음
+    const getDogButton = document.querySelector('#get_dog_btn')
+    getDogButton.addEventListener('click', () => {
+      getDogImage()
+    })
+
+    // 함수를 만들어서 계속 사진을 불러온다
+    const getDogImage = function() {
+
+    // 댕댕이 api url
+    const DOG_API_URL = 'https://dog.ceo/api/breeds/image/random'
+    // 비동기 실행이기 때문에 response = axios.get~으로 바로 응답받을 수 없다
+    // axios를 통해 댕댕이 사진을 달라는 요청을 보낸다
+    axios.get(DOG_API_URL)
+      // 그리고, 요청이 도착하면 함수를 실행한다
+      .then(function(response) {
+        console.log(response)
+
+        // 응답받은 data에서 댕댕이 이미지url을 꺼낸다
+        const imageUrl = response.data.message
+        // 댕댕이 이미지를 화면에 표현하기 위한 이미지 태그를 생성한다.
+        const dogImage = document.createElement('img')
+        dogImage.src = imageUrl
+        dogImage.alt = 'dog'
+
+        // div.animals 안에 댕댕이 이미지 태그를 push한다
+        const animalsList = document.querySelector('div.animals')
+        animalsList.appendChild(dogImage)
+      })
+
+    }
+
+
+    // 야옹이 사진 내놔 만들기
+    const getCatImage = function() {
+
+    // 요청보낼 cat url
+    const CAT_API_URL = 'https://api.thecatapi.com/v1/images/search'
+    // 요청은 axios로 보낸다
+    axios.get(CAT_API_URL)
+        // 요청 보낸 후 제대로 요청이 들어갔는지 바로 확인해야한다.
+      .then(function(response2) {
+        // response를 콘솔로 출력한 후, 내가 가지고오고 싶은 정보에 마우스를 올리면 주소가 나타남
+        const imageUrl2 = response2.data['0'].url
+        const catImage = document.createElement('img')
+        catImage.src = imageUrl2
+        catImage.alt = 'cat'
+        // console.log(response2)
+        const animalsList = document.querySelector('div.animals')
+        animalsList.appendChild(catImage)
+      })
+    }
+
+    const getCatButton = document.querySelector('#get_cat_btn')
+    getCatButton.addEventListener('click', getCatImage)
+
+  </script>
+
+</body>
+</html>
+```
+

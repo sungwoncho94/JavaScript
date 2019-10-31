@@ -1,6 +1,6 @@
 function sleep_3() {
   setTimeout(function(){
-    console.log('Wake Up!')
+    console.log('Wake up!')
   }, 3000)
 }
 
