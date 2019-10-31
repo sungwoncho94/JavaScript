@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <!-- Axios -->
+ <!-- XHR을 만들어주는 친구 -->
+ <!-- XHR: 자바스크립트에서 요청을 보내는 객체
+           화면을 새로고침하지 않고, 요청을 보내서 응답받을 수 있음 -->
+ <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+ <title>Use Axios</title>
+</head>
+<body>
+
+  <!-- body안에 아무 내용도 없지만 동적요청을 통해 데이터를 받아올 수 있다 -->
+  <script>
+  // 요청을 보낼 url 정의
+  url = 'https://jsonplaceholder.typicode.com/posts/1'
+  // Axios를 이용해 url로 GET요청을 보낸다
+  axios.get(url)
+    // 그리고, 응답이 도착한 다음 실행할 함수를 정의한다(응답의 내용은 함수의 인자로 받는다)
+    .then(function(response) {
+      const data = response.data
+      document.write(data.body)
+    })
+  </script>
+</body>
+</html>

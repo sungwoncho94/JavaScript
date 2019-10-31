@@ -1,0 +1,14 @@
+{
+  "name": "day03",
+  "version": "1.0.0",
+  "description": "설명:js연습",
+  "main": "00_nonblocing.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sungwon",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0"
+  }
+}
