@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Shopping List</title>
+</head>
+<body>
+  <h1>My shopping list</h1>
+
+  <div>
+    Enter a new item :
+    <input type="text">
+    <button>Add item</button>
+  </div>
+  <ul>
+  </ul>
+  <script>
+    // input 상자 잡기
+    const button = document.querySelector('button')
+
+    button.addEventListener('click', () => {
+      const input = document.querySelector('input')
+      const item = input.value
+      const li = document.createElement('li')
+      li.innerText = item
+      const del_button = document.createElement('button')
+      del_button.innerText = 'delete'
+      const ul = document.querySelector('ul')
+      ul.appendChild(li)
+      li.appendChild(del_button)
+      del_button.addEventListener('click', ()=>{
+        li.remove()
+      })
+    })
+  </script>
+</body>
+</html>

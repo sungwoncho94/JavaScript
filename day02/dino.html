@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .bg {
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg">
+      <img
+        id="dino"
+        width="100px"
+        height="100px"
+        src="https://is4-ssl.mzstatic.com/image/thumb/Purple118/v4/88/e5/36/88e536d4-8a08-7c3b-ad29-c4e5dabc9f45/AppIcon-1x_U007emarketing-sRGB-85-220-0-6.png/246x0w.jpg"
+        alt="dino"
+      />
+    </div>
+
+    <script>
+      const bg = document.querySelector('div.bg')
+      const dino = bg.querySelector('img')
+
+      // 새로운 요소 추가
+      dino.remove()
+      const pika = document.createElement('img')
+      pika.id = 'pikachu'
+      pika.src = 'https://image.fmkorea.com/files/attach/new/20180627/425547776/837628905/1125113061/be82af9c593fedfcc40d20b5a9dae43c.png'
+      pika.style.width = '100px'
+      pika.style.height = '150px'
+      pika.alt = 'pikachu'
+      bg.appendChild(pika)  // 특정요소 추가하는 방법 1 - 가장 마지막에 요소를 추가함
+      // bg.insertBefor(pika, bg.firstElementChild)  // 방법 2 - 가장 앞에 추가 - 두번째 요소 앞에 첫 번째 요소를 추가할 것.
+
+      // 이벤트리스너
+      pika.addEventListener('click', () => {
+        console.log('피카!')
+      })
+
+
+      // 상하좌우 키보드 눌렀을 때만 이벤트 발생
+      let x = 0
+      let y = 0
+      document.addEventListener('keydown', event => {
+        if (event.key === 'ArrowDown') {
+          console.log('down')
+          y += 20
+          pika.style.marginTop = `${y}px`
+        }
+        if (event.key === 'ArrowUp') {
+          console.log('Up')
+          y -= 20
+          pika.style.marginTop = `${y}px`
+        }
+        if (event.key === 'ArrowRight') {
+          console.log('Right')
+          x += 20
+          pika.style.marginLeft = `${x}px`
+
+        }
+        if (event.key === 'ArrowLeft') {
+          console.log('Left')
+          x -= 20
+          pika.style.marginLeft = `${x}px`
+        }
+      })
+      pika.addEventListener('mouseover', () => {
+        const newWidth = window.innerWidth * Math.random()
+        const newHeight = window.innerHeight * Math.random()
+        pika.style.left = newWidth + 'px'
+        pika.style.top = newHeight + 'px'
+      })
+
+
+
+      // 마우스 올리면 도망가는 이벤트
+      pika.style.position = 'absolute'
+
+/*
+      // 아무 키보드나 눌렀을 때, 반응하는 event
+      document.addEventListener('keydown', event => {
+        // 방향키를 눌렀을 때만 event를 출력할 수 있도록 조건문 작성
+        console.log(event)
+      })
+*/
+
+    </script>
+  </body>
+</html>

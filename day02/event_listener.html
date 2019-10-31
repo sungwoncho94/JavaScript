@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1 id='header'>header</h1>
+  <button id='my-button'>Click me!</button>
+
+  <script>
+    const button = document.querySelector('#my-button')  // id 부를때 # 쓴다
+    button.addEventListener('click', () => {
+      console.log('클릭!')
+    })  // 특정 이벤트(클릭)이 실행될 때 마다, 함수{}를 실행할 것
+    // 실행 시점을 특정지을 수 없을 때, 'click'이라는 이벤트 자체를 () 함수로 받아서, 
+    // callback함수 자체를 넘겨준다 -> ()함수가 넘어오면, 
+    // click이 시행되는 시점에 {}함수를 실행시킴
+  </script>
+</body>
+</html>
